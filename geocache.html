@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Kätkentävisa</title>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"/></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="geocache.js"/></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.1/Pizzicato.js"></script>
+		<link rel="stylesheet" type="text/css" href="geocache.css"/>
+		<link rel="stylesheet" type="text/css" href="geocache-desktop.css"/>
+	</head>
+	<body>
+		<div ng-app="content" class="row content">
+			<div class="col-xs-1 col-sm-1 col-md-2 col-lg-3"></div>
+			<div class="col-xs-10 col-sm-10 col-md-8 col-lg-6" ng-controller="QuestionsController">
+				<div>
+					<div class="content__header panel panel-default" ng-hide="answersCorrect">
+						<div class="panel-heading">
+							<div class="content__header-introduction">{{currentQuestion.introduction}}</div>
+							<div class="content__header-details">{{currentQuestion.id}} / {{questions.length}}</div>
+							<div class="content__header-question">{{currentQuestion.question}}</div>
+						</div>
+						<div class="list-group" ng-repeat="option in currentQuestion.options"">
+							<label>
+								<input type="radio" name="answer-option" ng-click="updateAnswer(option)"> {{option}}
+							</label>
+						</div>
+						<button type="button" class="btn" ng-disabled="!hasAnswer()" ng-click="checkAnswer()">Vastaa</button>
+					</div>
+				</div>
+				<div class="content__header-coordinates-text" ng-show="showCoordinates()">Koordinaatit: 
+					<span class="content__header-coordinates">{{coordinates}}</span>
+				</div>
+			</div>	
+			<div class="col-xs-1 col-sm-1 col-md-2 col-lg-3"></div>
+		</div>
+	</body>
+</html>
