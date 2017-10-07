@@ -119,7 +119,8 @@ app.controller('QuestionsController', function($scope) {
 	
 	$scope.showCoordinates = function() {
 		if ($scope.answersCorrect) {
-			$scope.coordinates = "34243928423"
+			$scope.latitude = "60°07\′25\""
+			$scope.longitude = "24°26\′18\″"
 			return true;
 		}
 		return false;
