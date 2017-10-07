@@ -67,7 +67,7 @@ app.controller('QuestionsController', function($scope) {
      
     $scope.questions = questions;
 	
-	$scope.wrongSound = "";
+	$scope.wrongSoundFileName = "";
 	
 	$scope.startQuiz = function () {
 		$scope.currentQuestionId = 0;
@@ -86,13 +86,13 @@ app.controller('QuestionsController', function($scope) {
 				$scope.answersCorrect = true;
 				$scope.showCoordinates();
 			} else {
-				var sound = "sounds/" + $scope.currentQuestion.id + ".wav"
-				$scope.playSound(sound);
+				var fileName = $scope.currentQuestion.id;
+				$scope.playSound(fileName);
 				$scope.showNextQuestion();
 			}
 		} else {
 			alert("Ei nyt sinne päinkään!");
-			$scope.playSound($scope.wrongSound);
+			$scope.playSound($scope.wrongSoundFileName);
 			$scope.startQuiz();
 		}
 	};
@@ -103,8 +103,9 @@ app.controller('QuestionsController', function($scope) {
 		$scope.currentQuestion = $scope.questions[$scope.currentQuestionId];
 	};
 	
-	$scope.playSound = function (path) {
-		var feedBackSound = new Pizzicato.Sound(path, function() {
+	$scope.playSound = function (fileName) {
+		var sound = "sounds/" + fileName + ".wav";
+		var feedBackSound = new Pizzicato.Sound(sound, function() {
 			//feedBackSound.play();
 		});          
 	};
@@ -119,7 +120,8 @@ app.controller('QuestionsController', function($scope) {
 	
 	$scope.showCoordinates = function() {
 		if ($scope.answersCorrect) {
-			$scope.coordinates = "34243928423"
+			$scope.latitude = "60°07\′25\""
+			$scope.longitude = "24°26\′18\″"
 			return true;
 		}
 		return false;
