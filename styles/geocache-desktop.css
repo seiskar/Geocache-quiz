@@ -1,0 +1,11 @@
+@media only screen and (min-width: 400px) {
+	
+    .content__header-details {
+		float: right;
+		margin: 0px 0px 50px 5px;
+	}
+	
+	.content {
+		margin-top: 50px;
+	}
+}
