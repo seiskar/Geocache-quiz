@@ -67,7 +67,8 @@ app.controller('QuestionsController', function($scope) {
      
     $scope.questions = questions;
 	
-	$scope.wrongSoundFileName = "";
+	$scope.wrongSoundFileName = "wrongSound";
+	$scope.wrongSoundVolume = 0.5;
 	
 	$scope.startQuiz = function () {
 		$scope.currentQuestionId = 0;
@@ -87,12 +88,13 @@ app.controller('QuestionsController', function($scope) {
 				$scope.showCoordinates();
 			} else {
 				var fileName = $scope.currentQuestion.id;
-				$scope.playSound(fileName);
+				var volume = $scope.currentQuestion.id * 0.1;
+				$scope.playSound(fileName, volume);
 				$scope.showNextQuestion();
 			}
 		} else {
 			alert("Ei nyt sinne päinkään!");
-			$scope.playSound($scope.wrongSoundFileName);
+			$scope.playSound($scope.wrongSoundFileName, $scope.wrongSoundVolume);
 			$scope.startQuiz();
 		}
 	};
@@ -103,11 +105,13 @@ app.controller('QuestionsController', function($scope) {
 		$scope.currentQuestion = $scope.questions[$scope.currentQuestionId];
 	};
 	
-	$scope.playSound = function (fileName) {
-		var sound = "sounds/" + fileName + ".wav";
-		var feedBackSound = new Pizzicato.Sound(sound, function() {
-			//feedBackSound.play();
-		});          
+	// Tarvitaan joko MP3- tai WAV-tiedostoja. Niitä tukevat käytetyimmät selaimet.
+	$scope.playSound = function (fileName, volume) {
+		//var sound = "sounds/" + fileName + ".wav";
+		//var feedBackSound = new Pizzicato.Sound(sound, function() {
+		//  feedBackSound.volume = volume;
+		//  feedBackSound.play();
+		//});
 	};
 	
 	$scope.updateAnswer = function(answer) {
