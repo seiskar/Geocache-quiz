@@ -69,6 +69,10 @@ app.controller('QuestionsController', function($scope) {
 	
 	$scope.wrongSoundFileName = "wrongSound";
 	$scope.wrongSoundVolume = 0.5;
+	$scope.correctSoundMultiplier = 0.1;
+	
+	$scope.latitude = "60°07\′25\"";
+	$scope.longitude = "24°26\′18\″";
 	
 	$scope.startQuiz = function () {
 		$scope.currentQuestionId = 0;
@@ -88,7 +92,7 @@ app.controller('QuestionsController', function($scope) {
 				$scope.showCoordinates();
 			} else {
 				var fileName = $scope.currentQuestion.id;
-				var volume = $scope.currentQuestion.id * 0.1;
+				var volume = $scope.currentQuestion.id * $scope.correctSoundMultiplier;
 				$scope.playSound(fileName, volume);
 				$scope.showNextQuestion();
 			}
@@ -124,8 +128,6 @@ app.controller('QuestionsController', function($scope) {
 	
 	$scope.showCoordinates = function() {
 		if ($scope.answersCorrect) {
-			$scope.latitude = "60°07\′25\""
-			$scope.longitude = "24°26\′18\″"
 			return true;
 		}
 		return false;
