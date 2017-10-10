@@ -33,7 +33,7 @@ label {
 }
 
 .btn:disabled {
-	background: linear-gradient(#D9D9D9, #EDEDED);
+	background: linear-gradient(#EDEDED, #D9D9D9);
 }
 
 .btn {
