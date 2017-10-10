@@ -32,7 +32,12 @@ label {
 	margin: 0px 20px;
 }
 
+.btn:disabled {
+	background: linear-gradient(#D9D9D9, #EDEDED);
+}
+
 .btn {
 	margin: 10px 20px !important;
 	border-color: #dddddd !important;
+	background: linear-gradient(#EAFEEA, #C1F7B2 15%);
 }
