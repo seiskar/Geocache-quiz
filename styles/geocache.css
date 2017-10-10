@@ -3,6 +3,7 @@
 }
 
 .panel-heading {
+	background: linear-gradient(#EAFEEA, #C1F7B2 15%);
 	background-color: #C1F7B2 !important;
 }
 
