@@ -16,7 +16,7 @@
 	font-weight: normal;
 }
 
-.content__header-question {
+.content__header-question, .content__header-wrong-answer {
 	font-weight: bold;
 }
 

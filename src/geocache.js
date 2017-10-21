@@ -68,8 +68,6 @@ app.controller('QuestionsController', function($scope) {
     $scope.questions = questions;
 	
 	$scope.wrongSoundFileName = "wrongSound";
-	$scope.wrongSoundVolume = 0.5;
-	$scope.correctSoundMultiplier = 0.1;
 	
 	$scope.latitude = "60°07\′25\"";
 	$scope.longitude = "24°26\′18\″";
@@ -77,8 +75,8 @@ app.controller('QuestionsController', function($scope) {
 	$scope.startQuiz = function () {
 		$scope.currentQuestionId = 0;
 		$scope.currentQuestion = $scope.questions[$scope.currentQuestionId];
-		$scope.answersCorrect = false;
-		$scope.coordinates = null;
+		$scope.allAnswersCorrect = false;
+		$scope.wrongAnswer = false;
 	};
 	
 	$scope.lastQuestion = function () {
@@ -88,18 +86,16 @@ app.controller('QuestionsController', function($scope) {
 	$scope.checkAnswer = function (answer) {
 		if ($scope.currentQuestion.answer == $scope.currentQuestion.correctAnswer) {
 			if ($scope.currentQuestionId == $scope.lastQuestion()) {
-				$scope.answersCorrect = true;
-				$scope.showCoordinates();
+				$scope.allAnswersCorrect = true;
 			} else {
 				var fileName = $scope.currentQuestion.id;
 				var volume = $scope.currentQuestion.id * $scope.correctSoundMultiplier;
-				$scope.playSound(fileName, volume);
+				$scope.playSound(fileName);
 				$scope.showNextQuestion();
 			}
 		} else {
-			alert("Ei nyt sinne päinkään!");
-			$scope.playSound($scope.wrongSoundFileName, $scope.wrongSoundVolume);
-			$scope.startQuiz();
+			$scope.wrongAnswer = true;
+			$scope.playSound($scope.wrongSoundFileName);
 		}
 	};
 	
@@ -109,13 +105,11 @@ app.controller('QuestionsController', function($scope) {
 		$scope.currentQuestion = $scope.questions[$scope.currentQuestionId];
 	};
 	
-	// Tarvitaan joko MP3- tai WAV-tiedostoja. Niitä tukevat käytetyimmät selaimet.
-	$scope.playSound = function (fileName, volume) {
-		//var sound = "sounds/" + fileName + ".wav";
-		//var feedBackSound = new Pizzicato.Sound(sound, function() {
-		//  feedBackSound.volume = volume;
-		//  feedBackSound.play();
-		//});
+	$scope.playSound = function (fileName) {
+		var sound = "sounds/" + fileName + ".wav";
+		var feedBackSound = new Pizzicato.Sound(sound, function() {
+		    feedBackSound.play();
+		});
 	};
 	
 	$scope.updateAnswer = function(answer) {
@@ -124,13 +118,6 @@ app.controller('QuestionsController', function($scope) {
 	
 	$scope.hasAnswer = function() {
 		return $scope.currentQuestion.answer != null;
-	};
-	
-	$scope.showCoordinates = function() {
-		if ($scope.answersCorrect) {
-			return true;
-		}
-		return false;
 	};
 	
 	$scope.startQuiz();
