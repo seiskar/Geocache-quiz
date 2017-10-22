@@ -29,7 +29,7 @@ label {
 }
 
 .list-group {
-	margin: 0px 20px;
+	margin: 0px 15px;
 }
 
 .btn:disabled {
@@ -37,7 +37,7 @@ label {
 }
 
 .btn {
-	margin: 10px 20px !important;
+	margin: 10px 15px !important;
 	border-color: #dddddd !important;
 	background: linear-gradient(#EAFEEA, #C1F7B2 15%);
 }
