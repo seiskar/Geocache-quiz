@@ -20,6 +20,10 @@
 	font-weight: bold;
 }
 
+.content__header-coordinates {
+	margin: 15px 15px;
+}
+
 label {
 	font-weight: normal;
 }
