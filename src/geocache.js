@@ -77,8 +77,8 @@ app.controller('QuestionsController', function($scope) {
 	
 	$scope.wrongSound = new Pizzicato.Sound("sounds/wrongSound.mp3");
 	
-	$scope.latitude = "60°07\′25\"";
-	$scope.longitude = "24°26\′18\″";
+	$scope.latitude = "NjDCsDA34oCyMjUi";
+	$scope.longitude = "MjTCsDI24oCyMTjigLM=";
 	
 	$scope.startQuiz = function () {
 		$scope.currentQuestionId = 0;
@@ -95,6 +95,7 @@ app.controller('QuestionsController', function($scope) {
 		if ($scope.currentQuestion.answer == $scope.currentQuestion.correctAnswer) {
 			if ($scope.currentQuestionId == $scope.lastQuestion()) {
 				$scope.allAnswersCorrect = true;
+				$scope.revealCoordinates();
 			} else {
 				$scope.showNextQuestion();
 			}
@@ -122,6 +123,15 @@ app.controller('QuestionsController', function($scope) {
 	$scope.hasAnswer = function() {
 		return $scope.currentQuestion.answer != null;
 	};
+	
+	$scope.revealCoordinates = function() {
+		$scope.latitude = $scope.decryptCoordinate($scope.latitude);
+		$scope.longitude = $scope.decryptCoordinate($scope.longitude);
+	}
+	
+	$scope.decryptCoordinate = function(encryptedCoordinate) {
+		return CryptoJS.enc.Base64.parse(encryptedCoordinate).toString(CryptoJS.enc.Utf8);
+	}
 	
 	$scope.startQuiz();
 });
