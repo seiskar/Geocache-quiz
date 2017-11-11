@@ -80,39 +80,46 @@ app.controller('QuestionsController', function($scope) {
 	$scope.latitude = "NjDCsDA34oCyMjUi";
 	$scope.longitude = "MjTCsDI24oCyMTjigLM=";
 	
-	$scope.startQuiz = function () {
+	$scope.startQuiz = function() {
 		$scope.currentQuestionId = 0;
 		$scope.currentQuestion = $scope.questions[$scope.currentQuestionId];
 		$scope.allAnswersCorrect = false;
 		$scope.wrongAnswer = false;
 	};
 	
-	$scope.lastQuestion = function () {
-		return $scope.questions.length - 1;
+	$scope.isLastQuestion = function() {
+		return $scope.currentQuestionId == $scope.questions.length - 1;
 	}
 	
-	$scope.checkAnswer = function (answer) {
-		if ($scope.currentQuestion.answer == $scope.currentQuestion.correctAnswer) {
-			if ($scope.currentQuestionId == $scope.lastQuestion()) {
+	$scope.isCorrectAnswer = function() {
+		if ($scope.hasAnswer()) {
+			return $scope.currentQuestion.answer == $scope.currentQuestion.correctAnswer;
+		}
+		return false;
+	}
+	
+	$scope.checkAnswer = function() {
+		if ($scope.isCorrectAnswer()) {
+			$scope.playSound($scope.currentQuestion.correctSound);
+			if ($scope.isLastQuestion()) {
 				$scope.allAnswersCorrect = true;
 				$scope.revealCoordinates();
 			} else {
 				$scope.showNextQuestion();
 			}
-			$scope.playSound($scope.currentQuestion.correctSound);
 		} else {
 			$scope.wrongAnswer = true;
 			$scope.playSound($scope.wrongSound);
 		}
 	};
 	
-	$scope.showNextQuestion = function () {
+	$scope.showNextQuestion = function() {
 		$scope.currentQuestion.answer = null;
 		$scope.currentQuestionId++;
 		$scope.currentQuestion = $scope.questions[$scope.currentQuestionId];
 	};
 	
-	$scope.playSound = function (sound) {
+	$scope.playSound = function(sound) {
 		sound.play();
 	};
 	
