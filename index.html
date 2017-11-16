@@ -16,9 +16,13 @@
 		<script src="src/hotjar.js"></script>
 	</head>
 	<body>
-		<div ng-app="content" class="row content">
+		<div ng-app="geocache-quiz" class="row content">
 			<div class="col-xs-1 col-sm-1 col-md-2 col-lg-3"></div>
 			<div class="col-xs-10 col-sm-10 col-md-8 col-lg-6" ng-controller="QuestionsController">
+				<div class="content__header panel panel-default content__bad-browser" ng-show="isInternetExplorer()">
+					Jos näet tämän viestin, kätkövisa ei todennäköisesti toimi selaimessasi oikein.<br>
+					Kokeile toista selainta.
+				</div>
 				<div class="content__header panel panel-default" ng-hide="wrongAnswer || allAnswersCorrect">
 					<div class="panel-heading">
 						<div class="content__header-details">{{currentQuestion.id}} / {{questions.length}}</div>

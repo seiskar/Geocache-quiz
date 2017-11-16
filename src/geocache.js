@@ -1,4 +1,4 @@
-var app = angular.module('content', []);
+var app = angular.module('geocache-quiz', []);
  
 app.controller('QuestionsController', function($scope) {
     $scope.questions = [
@@ -74,7 +74,7 @@ app.controller('QuestionsController', function($scope) {
             correctSound: new Pizzicato.Sound("sounds/10.mp3")
         }
     ];
-	
+
 	$scope.wrongSound = new Pizzicato.Sound("sounds/wrongSound.mp3");
 	
 	$scope.latitude = "TiA2MCAwNy43NzE=";
@@ -140,6 +140,10 @@ app.controller('QuestionsController', function($scope) {
 		return CryptoJS.enc.Base64.parse(encryptedCoordinate).toString(CryptoJS.enc.Utf8);
 	}
 	
+	$scope.isInternetExplorer = function() {
+		return navigator.appName == 'Microsoft Internet Explorer';
+	}
+
 	$scope.startQuiz();
 });
 
