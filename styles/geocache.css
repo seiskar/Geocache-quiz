@@ -7,20 +7,20 @@
 	background-color: #C1F7B2 !important;
 }
 
-.content__header-introduction, .content__header-coordinates-text {
+.content__panel-introduction, .content__panel-coordinates-text {
 	display: inline;
 	font-weight: bold;
 }
 
-.content__header-coordinates {
+.content__panel-coordinates {
 	font-weight: normal;
 }
 
-.content__header-question, .content__header-wrong-answer {
+.content__panel-question, .content__panel-wrong-answer {
 	font-weight: bold;
 }
 
-.content__header-coordinates {
+.content__panel-coordinates {
 	margin: 15px 15px;
 }
 

@@ -19,15 +19,15 @@
 		<div ng-app="geocache-quiz" class="row content">
 			<div class="col-xs-1 col-sm-1 col-md-2 col-lg-3"></div>
 			<div class="col-xs-10 col-sm-10 col-md-8 col-lg-6" ng-controller="QuestionsController">
-				<div class="content__header panel panel-default content__bad-browser" ng-show="isInternetExplorer()">
+				<div class="content__panel panel panel-default content__bad-browser" ng-show="isInternetExplorer()">
 					Jos näet tämän viestin, kätkövisa ei todennäköisesti toimi selaimessasi oikein.<br>
 					Kokeile toista selainta.
 				</div>
-				<div class="content__header panel panel-default" ng-hide="wrongAnswer || allAnswersCorrect">
+				<div class="content__panel panel panel-default" ng-hide="wrongAnswer || allAnswersCorrect">
 					<div class="panel-heading">
-						<div class="content__header-details">{{currentQuestion.id}} / {{questions.length}}</div>
-						<div class="content__header-introduction">{{currentQuestion.introduction}}</div>
-						<div class="content__header-question">{{currentQuestion.question}}</div>
+						<div class="content__panel-details">{{currentQuestion.id}} / {{questions.length}}</div>
+						<div class="content__panel-introduction">{{currentQuestion.introduction}}</div>
+						<div class="content__panel-question">{{currentQuestion.question}}</div>
 					</div>
 					<div class="list-group" ng-repeat="option in currentQuestion.options"">
 						<label>
@@ -36,17 +36,17 @@
 					</div>
 					<button type="button" class="btn" ng-disabled="!hasAnswer()" ng-click="checkAnswer()">Vastaa</button>
 				</div>
-				<div class="content__header panel panel-default" ng-show="wrongAnswer">
+				<div class="content__panel panel panel-default" ng-show="wrongAnswer">
 					<div class="panel-heading">
-						<div class="content__header-wrong-answer">Ei nyt sinne päinkään!</div>
+						<div class="content__panel-wrong-answer">Ei nyt sinne päinkään!</div>
 					</div>
 					<button type="button" class="btn" ng-click="startQuiz()">Takaisin alkuun</button>
 				</div>
-				<div class="content__header panel panel-default" ng-show="allAnswersCorrect">
+				<div class="content__panel panel panel-default" ng-show="allAnswersCorrect">
 					<div class="panel-heading">
-						<div class="content__header-coordinates-text">Koordinaatit:</div>
+						<div class="content__panel-coordinates-text">Koordinaatit:</div>
 					</div>
-					<div class="content__header-coordinates">
+					<div class="content__panel-coordinates">
 						<a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}">
 							{{latitude}} {{longitude}}
 						</a>
