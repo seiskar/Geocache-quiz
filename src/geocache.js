@@ -77,8 +77,8 @@ app.controller('QuestionsController', function($scope) {
 
 	$scope.wrongSound = new Pizzicato.Sound("sounds/wrongSound.mp3");
 	
-	$scope.latitude = "TiA2MCAwNy43NzE=";
-	$scope.longitude = "RSAyNCAyNC41NTU=";
+	$scope.latitude = "TiA2MCAwNy43OTY=";
+	$scope.longitude = "RSAyNCAyNC41NjA=";
 	
 	$scope.startQuiz = function() {
 		$scope.currentQuestionId = 0;
